@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { TIERS, TIER_LABEL } from "@/lib/tiers";
 
 const POPULAR = ["Bengaluru", "Mumbai", "Pune", "New Delhi", "Gurugram", "Hyderabad", "Chennai"];
 const BHK = [
@@ -19,6 +20,7 @@ export function SearchBar({
   const router = useRouter();
   const [city, setCity] = useState("");
   const [beds, setBeds] = useState("");
+  const [tier, setTier] = useState("");
   const [showCities, setShowCities] = useState(false);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -26,6 +28,7 @@ export function SearchBar({
     const params = new URLSearchParams();
     if (city) params.set("city", city);
     if (beds) params.set("beds", beds);
+    if (tier) params.set("tier", tier);
     router.push(`/stays?${params.toString()}`);
   };
 
@@ -54,7 +57,7 @@ export function SearchBar({
         onSubmit={onSubmit}
         className="bg-paper border border-line rounded-2xl shadow-[0_8px_28px_-12px_rgba(26,20,13,0.18)]"
       >
-        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_auto] divide-y md:divide-y-0 md:divide-x divide-line-soft">
+        <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_auto] divide-y md:divide-y-0 md:divide-x divide-line-soft">
           <div className="relative px-5 py-4">
             <label className="block text-[0.65rem] uppercase tracking-[0.28em] text-ink-faint mb-1.5">
               Where
@@ -106,6 +109,24 @@ export function SearchBar({
               {BHK.map((b) => (
                 <option key={b.v} value={b.v}>
                   {b.l}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="px-5 py-4 flex flex-col justify-center">
+            <span className="block text-[0.65rem] uppercase tracking-[0.28em] text-ink-faint mb-1.5">
+              {TIER_LABEL}
+            </span>
+            <select
+              value={tier}
+              onChange={(e) => setTier(e.target.value)}
+              className="w-full bg-transparent text-[1.05rem] outline-none"
+            >
+              <option value="">Any {TIER_LABEL.toLowerCase()}</option>
+              {TIERS.map((t) => (
+                <option key={t} value={t}>
+                  {t}
                 </option>
               ))}
             </select>

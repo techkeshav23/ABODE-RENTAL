@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { PROPERTIES, CITIES, getTier } from "@/lib/data";
-import { TIERS } from "@/lib/tiers";
+import { TIERS, TIER_LABEL } from "@/lib/tiers";
 import { PropertyCard } from "@/components/PropertyCard";
 import { SearchBar } from "@/components/SearchBar";
 
@@ -22,7 +22,10 @@ const RENT_BUCKETS = [
   { v: "75000-", l: "Above ₹75k" },
 ];
 
-const TIER_OPTIONS = [{ v: "", l: "Any tier" }, ...TIERS.map((t) => ({ v: t, l: t }))];
+const TIER_OPTIONS = [
+  { v: "", l: `Any ${TIER_LABEL.toLowerCase()}` },
+  ...TIERS.map((t) => ({ v: t, l: t })),
+];
 
 const QUICK_CHIPS = [
   { l: "On the map", q: "/nearby" },
@@ -112,6 +115,12 @@ export default function HomePage() {
       <section className="bg-paper/95 backdrop-blur-lg border-b border-line sticky top-[104px] md:top-[56px] z-30">
         <div className="mx-auto max-w-[1500px] px-4 lg:px-8 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
           <FilterDropdown
+            label={TIER_LABEL}
+            value={tier}
+            onChange={setTier}
+            options={TIER_OPTIONS}
+          />
+          <FilterDropdown
             label="City"
             value={city}
             onChange={setCity}
@@ -122,12 +131,6 @@ export default function HomePage() {
             value={rentRange}
             onChange={setRentRange}
             options={RENT_BUCKETS}
-          />
-          <FilterDropdown
-            label="Tier"
-            value={tier}
-            onChange={setTier}
-            options={TIER_OPTIONS}
           />
           <Link
             href="/nearby"

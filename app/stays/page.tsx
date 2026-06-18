@@ -160,7 +160,7 @@ function ActiveChips({ sp }: { sp: SearchParamsRaw }) {
   if (sp.max) chips.push({ key: "max", label: `Max ₹${sp.max}` });
   if (sp.beds) chips.push({ key: "beds", label: `${sp.beds} BHK` });
   if (sp.furnishing) chips.push({ key: "furnishing", label: sp.furnishing });
-  if (sp.tier) chips.push({ key: "tier", label: `${sp.tier} tier` });
+  if (sp.tier) chips.push({ key: "tier", label: sp.tier });
   const ams = ([] as string[]).concat(sp.amenity ?? []);
   ams.forEach((a) => chips.push({ key: `am-${a}`, label: a }));
 

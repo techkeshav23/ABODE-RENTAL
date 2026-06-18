@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { TIERS } from "@/lib/tiers";
+import { TIERS, TIER_LABEL } from "@/lib/tiers";
 
 const AMENITIES = [
   "Wi-Fi",
@@ -111,7 +111,7 @@ export function Filters() {
         </div>
       </Section>
 
-      <Section title="Property tier">
+      <Section title={TIER_LABEL}>
         <div className="flex flex-wrap gap-1.5">
           <Chip active={tier === ""} onClick={() => setTier("")} label="Any" />
           {TIERS.map((t) => (

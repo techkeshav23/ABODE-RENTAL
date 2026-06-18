@@ -11,6 +11,9 @@
 export const TIER_CLASSIC = process.env.NEXT_PUBLIC_TIER_CLASSIC?.trim() || "Classic";
 export const TIER_PREMIUM = process.env.NEXT_PUBLIC_TIER_PREMIUM?.trim() || "Premium";
 
+// The filter heading / group label (shown above the Classic/Premium choices).
+export const TIER_LABEL = process.env.NEXT_PUBLIC_TIER_LABEL?.trim() || "Community";
+
 // A tier value is whichever label is configured (resolves to TIER_CLASSIC | TIER_PREMIUM).
 export type Tier = string;
 

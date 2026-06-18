@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { Furnishing, Tier, VerificationStatus } from "@/lib/types";
-import { TIERS, TIER_CLASSIC, TIER_PREMIUM } from "@/lib/tiers";
+import { TIERS, TIER_CLASSIC, TIER_PREMIUM, TIER_LABEL } from "@/lib/tiers";
 import {
   ADMIN_PASSCODE,
   addListing,
@@ -339,7 +339,7 @@ function AddForm({ onAdded }: { onAdded: () => void }) {
             {["Furnished", "Semi-furnished", "Unfurnished"].map((f) => <option key={f} value={f}>{f}</option>)}
           </select>
         </Field>
-        <Field label="Tier">
+        <Field label={TIER_LABEL}>
           <select value={tier} onChange={(e) => setTier(e.target.value)} className={inpCls}>
             {TIERS.map((t) => (
               <option key={t} value={t}>
