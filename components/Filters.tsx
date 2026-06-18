@@ -70,7 +70,7 @@ export function Filters() {
     );
 
   return (
-    <div className="bg-paper border border-line rounded-2xl p-5 md:p-6 lg:sticky lg:top-[88px]">
+    <div className="bg-paper border border-line rounded-2xl p-5 md:p-6 lg:sticky lg:top-[72px]">
       <div className="flex items-baseline justify-between mb-5">
         <h3 className="font-display text-[1.4rem]">Refine</h3>
         <button onClick={reset} className="text-[0.82rem] text-clay hover:underline">

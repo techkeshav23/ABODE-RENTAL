@@ -70,7 +70,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-lg border-b border-line">
       <div className="mx-auto max-w-[1500px] px-4 lg:px-8">
-        <div className="flex items-center gap-3 lg:gap-5 h-[64px]">
+        <div className="flex items-center gap-3 lg:gap-5 h-[56px]">
           <Logo />
 
           <form
@@ -296,7 +296,7 @@ export function Header() {
         </div>
 
         {/* Mobile search row */}
-        <form onSubmit={submit} className="md:hidden pb-3">
+        <form onSubmit={submit} className="md:hidden pb-2.5">
           <div className="flex items-center bg-cream/70 border border-line rounded-full overflow-hidden">
             <svg
               className="ml-4 text-ink-soft shrink-0"
@@ -315,7 +315,7 @@ export function Header() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search city, area, or property"
-              className="flex-1 bg-transparent px-3 py-2.5 text-[0.92rem] outline-none"
+              className="flex-1 bg-transparent px-3 py-2 text-[0.92rem] outline-none"
             />
             <button className="bg-clay text-paper px-4 py-2.5 text-[0.85rem]">
               Go

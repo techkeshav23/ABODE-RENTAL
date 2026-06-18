@@ -104,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* Filter bar */}
-      <section className="bg-paper/95 backdrop-blur-lg border-b border-line sticky top-[116px] md:top-[64px] z-30">
+      <section className="bg-paper/95 backdrop-blur-lg border-b border-line sticky top-[104px] md:top-[56px] z-30">
         <div className="mx-auto max-w-[1500px] px-4 lg:px-8 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
           <FilterDropdown
             label="City"

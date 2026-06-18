@@ -207,7 +207,7 @@ export default async function PropertyPage({
             </div>
 
             <aside className="lg:col-span-5">
-              <div className="lg:sticky lg:top-[88px]">
+              <div className="lg:sticky lg:top-[72px]">
                 <ContactOwner property={property} />
 
                 <div className="mt-5 p-4 bg-cream/40 border border-line rounded-xl text-[0.88rem] text-ink-soft">

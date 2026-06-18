@@ -190,7 +190,7 @@ export function NearbyExplorer() {
 
       {/* Right: map */}
       <div className="order-1 lg:order-2 lg:col-span-7 xl:col-span-8">
-        <div className="relative h-[55vh] min-h-[320px] lg:h-[calc(100vh-160px)] lg:sticky lg:top-[88px] rounded-2xl overflow-hidden border border-line">
+        <div className="relative h-[55vh] min-h-[320px] lg:h-[calc(100vh-160px)] lg:sticky lg:top-[72px] rounded-2xl overflow-hidden border border-line">
           <MapView
             center={center}
             radiusKm={radiusKm}
