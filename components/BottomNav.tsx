@@ -45,7 +45,7 @@ export function BottomNav() {
             <Link
               key={it.href}
               href={it.href}
-              className={`flex-1 relative flex flex-col items-center justify-center gap-1 py-2.5 transition-colors ${
+              className={`flex-1 min-w-0 relative flex flex-col items-center justify-center gap-1 py-2.5 transition-colors ${
                 active ? "text-clay" : "text-ink-soft"
               }`}
             >
@@ -57,7 +57,9 @@ export function BottomNav() {
                   </span>
                 ) : null}
               </div>
-              <span className="text-[0.65rem] tracking-wide">{it.label}</span>
+              <span className="max-w-full text-[0.62rem] sm:text-[0.65rem] tracking-tight sm:tracking-wide leading-none truncate">
+                {it.label}
+              </span>
               {active && (
                 <span className="absolute top-0 inset-x-6 h-[2px] bg-clay rounded-b" />
               )}

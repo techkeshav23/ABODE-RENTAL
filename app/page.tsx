@@ -74,7 +74,7 @@ export default function HomePage() {
             <Badge>Verified tenants</Badge>
             <Badge>Search by distance</Badge>
           </div>
-          <h1 className="font-display text-[2rem] md:text-[3rem] leading-[1.05] tracking-tight max-w-3xl">
+          <h1 className="font-display text-[1.75rem] sm:text-[2rem] md:text-[3rem] leading-[1.1] md:leading-[1.05] tracking-tight max-w-3xl">
             Rent directly from verified owners.
             <span className="text-clay"> No brokers.</span>
           </h1>
@@ -104,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* Filter bar */}
-      <section className="bg-paper/95 backdrop-blur-lg border-b border-line sticky top-[64px] z-30">
+      <section className="bg-paper/95 backdrop-blur-lg border-b border-line sticky top-[116px] md:top-[64px] z-30">
         <div className="mx-auto max-w-[1500px] px-4 lg:px-8 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar">
           <FilterDropdown
             label="City"
@@ -160,7 +160,7 @@ export default function HomePage() {
           </div>
 
           {results.length === 0 ? (
-            <div className="border border-dashed border-line rounded-2xl p-16 text-center">
+            <div className="border border-dashed border-line rounded-2xl p-8 md:p-16 text-center">
               <div className="font-display text-[1.6rem] mb-2">No homes match.</div>
               <button
                 onClick={() => {

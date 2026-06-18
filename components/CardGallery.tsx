@@ -42,7 +42,7 @@ export function CardGallery({
             type="button"
             aria-label="Previous photo"
             onClick={(e) => go(e, -1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full bg-paper/90 text-ink shadow opacity-0 group-hover:opacity-100 hover:bg-paper transition-opacity"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-7 md:h-7 grid place-items-center rounded-full bg-paper/90 text-ink text-lg md:text-base shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:bg-paper transition-opacity"
           >
             ‹
           </button>
@@ -50,15 +50,15 @@ export function CardGallery({
             type="button"
             aria-label="Next photo"
             onClick={(e) => go(e, 1)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full bg-paper/90 text-ink shadow opacity-0 group-hover:opacity-100 hover:bg-paper transition-opacity"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-7 md:h-7 grid place-items-center rounded-full bg-paper/90 text-ink text-lg md:text-base shadow opacity-100 md:opacity-0 md:group-hover:opacity-100 hover:bg-paper transition-opacity"
           >
             ›
           </button>
-          <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1 pointer-events-none">
+          <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 pointer-events-none">
             {list.map((_, idx) => (
               <span
                 key={idx}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                className={`w-2 h-2 md:w-1.5 md:h-1.5 rounded-full transition-colors ${
                   idx === i ? "bg-paper" : "bg-paper/50"
                 }`}
               />

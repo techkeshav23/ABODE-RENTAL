@@ -83,15 +83,15 @@ export function VisitWizard({
 
   return (
     <div
-      className="fixed inset-0 z-[60] bg-ink/60 backdrop-blur-sm grid place-items-center p-3 sm:p-5"
+      className="fixed inset-0 z-[60] bg-ink/60 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-5"
       onClick={onClose}
     >
       <div
-        className="bg-paper w-full max-w-lg max-h-[94vh] rounded-2xl shadow-2xl overflow-y-auto"
+        className="bg-paper w-full sm:max-w-lg h-[100dvh] sm:h-auto sm:max-h-[90dvh] rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-paper border-b border-line px-5 sm:px-6 py-4 flex items-start justify-between gap-3 z-10">
+        <div className="shrink-0 bg-paper border-b border-line px-5 sm:px-6 py-4 flex items-start justify-between gap-3">
           <div>
             <div className="text-[0.68rem] uppercase tracking-[0.2em] text-clay">
               Request a visit
@@ -110,6 +110,8 @@ export function VisitWizard({
           </button>
         </div>
 
+        {/* Scrollable middle — footer below always stays pinned/visible */}
+        <div className="flex-1 overflow-y-auto overscroll-contain">
         {step <= 3 && (
           <div className="px-5 sm:px-6 pt-5">
             <Stepper step={step} />
@@ -337,10 +339,11 @@ export function VisitWizard({
             </div>
           )}
         </div>
+        </div>
 
-        {/* Footer nav */}
+        {/* Footer nav — pinned, never clipped */}
         {step <= 3 && (
-          <div className="sticky bottom-0 bg-paper border-t border-line px-5 sm:px-6 py-4 flex items-center justify-between gap-3">
+          <div className="shrink-0 bg-paper border-t border-line px-5 sm:px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] flex items-center justify-between gap-3">
             <button
               onClick={() => (step === 1 ? onClose() : setStep((s) => s - 1))}
               className="px-4 py-2.5 text-[0.88rem] text-ink-soft hover:text-ink"

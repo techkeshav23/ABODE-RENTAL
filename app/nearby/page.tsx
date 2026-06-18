@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function NearbyPage() {
   return (
-    <div className="bg-paper min-h-screen">
+    <div className="bg-paper min-h-screen pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0">
       <section className="pt-8 pb-5 border-b border-line">
-        <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-5 lg:px-10">
           <div className="text-[0.7rem] uppercase tracking-[0.22em] text-clay mb-2">
             Search by map
           </div>
@@ -26,7 +26,7 @@ export default function NearbyPage() {
       </section>
 
       <section className="py-6">
-        <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-5 lg:px-10">
           <NearbyExplorer />
         </div>
       </section>

@@ -27,8 +27,8 @@ export function PropertyCard({
           <div className="px-2.5 py-1 bg-paper/95 backdrop-blur rounded-full text-[0.68rem] uppercase tracking-[0.16em] text-ink">
             {property.bedrooms} BHK
           </div>
-          <div className="stamp inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[0.78rem] mr-12">
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor">
+          <div className="stamp inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[0.78rem] mr-10 md:mr-12 shrink-0">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" className="shrink-0">
               <path d="M6 0l1.7 4.1L12 4.6l-3.2 2.9L9.7 12 6 9.6 2.3 12l1-4.5L0 4.6l4.3-.5z" />
             </svg>
             <span className="font-medium tabular-nums">{property.rating.toFixed(1)}</span>
@@ -67,12 +67,12 @@ export function PropertyCard({
           {property.furnishing} · {property.area} sq ft
         </div>
 
-        <div className="mt-2 flex items-baseline gap-1.5">
+        <div className="mt-2 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
           <span className="font-display text-[1.1rem] md:text-[1.15rem] text-ink">
             {formatRent(property.rent)}
           </span>
           <span className="text-[0.78rem] text-ink-faint">/mo</span>
-          <span className="text-[0.72rem] text-ink-faint ml-auto">
+          <span className="text-[0.72rem] text-ink-faint w-full md:w-auto md:ml-auto truncate">
             {formatRent(property.deposit)} deposit
           </span>
         </div>

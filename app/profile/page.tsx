@@ -44,15 +44,17 @@ export default function ProfilePage() {
   return (
     <div className="bg-paper">
       <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-[1100px] px-5 lg:px-10 py-10 md:py-14">
-          <div className="flex items-center gap-4">
-            <Avatar name={TENANT_NAME} size={64} />
-            <div>
+        <div className="mx-auto max-w-[1100px] px-4 sm:px-5 lg:px-10 py-10 md:py-14">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="shrink-0">
+              <Avatar name={TENANT_NAME} size={64} />
+            </div>
+            <div className="min-w-0">
               <div className="inline-flex items-center gap-1.5 rounded-full bg-forest/20 border border-forest-soft/40 text-forest-soft px-2.5 py-1 text-[0.7rem] uppercase tracking-[0.16em] mb-2">
                 <TickIcon />
                 Verified tenant
               </div>
-              <h1 className="font-display text-[1.9rem] md:text-[2.4rem] leading-tight tracking-tight">
+              <h1 className="font-display text-[1.6rem] sm:text-[1.9rem] md:text-[2.4rem] leading-tight tracking-tight break-words">
                 {TENANT_NAME}
               </h1>
               <p className="text-[0.9rem] opacity-80 mt-1">
@@ -72,7 +74,7 @@ export default function ProfilePage() {
       </section>
 
       <section className="py-8 md:py-12">
-        <div className="mx-auto max-w-[1100px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1100px] px-4 sm:px-5 lg:px-10">
           <div className="bg-forest-soft/10 border border-forest-soft/30 rounded-2xl p-5 md:p-6">
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div>
@@ -89,7 +91,7 @@ export default function ProfilePage() {
               </div>
               <Link
                 href="/verify"
-                className="rounded-full border border-forest text-forest hover:bg-forest hover:text-paper transition-colors px-4 py-2 text-[0.85rem] font-medium"
+                className="w-full sm:w-auto text-center rounded-full border border-forest text-forest hover:bg-forest hover:text-paper transition-colors px-4 py-2 text-[0.85rem] font-medium"
               >
                 Manage verification
               </Link>
@@ -103,7 +105,7 @@ export default function ProfilePage() {
       </section>
 
       <section className="pb-4">
-        <div className="mx-auto max-w-[1100px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1100px] px-4 sm:px-5 lg:px-10">
           <h2 className="font-display text-[1.4rem] mb-5">Quick actions</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <ActionCard
@@ -135,7 +137,7 @@ export default function ProfilePage() {
       </section>
 
       <section className="pb-12 pt-8">
-        <div className="mx-auto max-w-[1100px] px-5 lg:px-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mx-auto max-w-[1100px] px-4 sm:px-5 lg:px-10 grid grid-cols-1 md:grid-cols-2 gap-5">
           <Group title="Account">
             <Item label="Personal information" hint="Name, email, phone" />
             <Item label="Login and security" hint="Password, 2FA" />
@@ -228,7 +230,7 @@ function ActionCard({
   return (
     <Link
       href={href}
-      className="group bg-paper border border-line rounded-2xl p-5 hover:border-ink hover:-translate-y-0.5 transition-all"
+      className="group bg-paper border border-line rounded-2xl p-4 sm:p-5 hover:border-ink hover:-translate-y-0.5 transition-all"
     >
       <div className="w-10 h-10 rounded-xl bg-cream grid place-items-center mb-3 text-clay group-hover:bg-clay group-hover:text-paper transition-colors">
         <ActionIcon name={icon} />

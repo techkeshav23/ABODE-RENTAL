@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-[calc(100vh-68px)] flex items-center justify-center px-5 py-12">
-      <div className="w-full max-w-md bg-paper border border-line rounded-2xl p-7 md:p-9">
+    <div className="min-h-[calc(100vh-68px)] flex items-center justify-center px-4 sm:px-5 py-10 sm:py-12 pb-24 md:pb-12">
+      <div className="w-full max-w-md bg-paper border border-line rounded-2xl p-6 sm:p-7 md:p-9">
         <h1 className="font-display text-[1.9rem] md:text-[2.2rem] leading-tight mb-2">
           Welcome back
         </h1>
@@ -44,11 +44,11 @@ export default function LoginPage() {
           <div className="flex-1 h-px bg-line" />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          <button className="flex items-center justify-center gap-2 py-2.5 border border-line rounded-full text-[0.85rem] hover:bg-cream">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          <button className="flex items-center justify-center gap-2 min-h-[44px] py-2.5 border border-line rounded-full text-[0.85rem] hover:bg-cream">
             <GoogleGlyph /> Google
           </button>
-          <button className="flex items-center justify-center gap-2 py-2.5 border border-line rounded-full text-[0.85rem] hover:bg-cream">
+          <button className="flex items-center justify-center gap-2 min-h-[44px] py-2.5 border border-line rounded-full text-[0.85rem] hover:bg-cream">
             <AppleGlyph /> Apple
           </button>
         </div>

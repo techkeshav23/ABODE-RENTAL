@@ -30,9 +30,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${fraunces.variable} ${geist.variable}`}>
-      <body className="min-h-screen flex flex-col pb-[68px] md:pb-0">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="relative flex-1 z-10">{children}</main>
+        <main className="relative flex-1 z-10 pb-[calc(68px+env(safe-area-inset-bottom))] md:pb-0">
+          {children}
+        </main>
         <Footer />
         <BottomNav />
       </body>

@@ -75,7 +75,7 @@ export function Header() {
 
           <form
             onSubmit={submit}
-            className="hidden md:flex flex-1 max-w-[640px] mx-auto"
+            className="hidden md:flex flex-1 min-w-0 md:max-w-[280px] lg:max-w-[640px] mx-auto"
           >
             <div className="relative w-full">
               <div className="flex items-center bg-cream/70 hover:bg-cream border border-line hover:border-ink/40 rounded-full overflow-hidden transition-colors focus-within:border-ink focus-within:bg-paper">
@@ -149,7 +149,7 @@ export function Header() {
             </div>
           </form>
 
-          <nav className="hidden md:flex items-center gap-2 text-[0.85rem]">
+          <nav className="hidden md:flex shrink-0 items-center gap-0.5 lg:gap-2 text-[0.85rem]">
             <Link
               href="/nearby"
               className="px-3 py-2 text-ink-soft hover:text-ink whitespace-nowrap inline-flex items-center gap-1.5"
@@ -326,7 +326,7 @@ export function Header() {
 
       {/* Mobile menu drawer */}
       {mobileMenu && (
-        <div className="md:hidden border-t border-line bg-paper">
+        <div className="md:hidden border-t border-line bg-paper max-h-[70vh] overflow-y-auto overscroll-contain">
           <div className="px-4 py-3 space-y-1 text-[0.95rem]">
             <MLink href="/nearby">Search nearby (map)</MLink>
             <MLink href="/profile">Account</MLink>

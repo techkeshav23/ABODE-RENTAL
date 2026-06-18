@@ -48,9 +48,9 @@ export default function HostPage() {
   const [sent, setSent] = useState(false);
 
   return (
-    <div>
+    <div className="pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0">
       <section className="bg-cream">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-16 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10 py-14 md:py-24">
           <div className="text-[0.7rem] uppercase tracking-[0.32em] text-clay mb-5">
             For home owners
           </div>
@@ -67,9 +67,9 @@ export default function HostPage() {
             {PERKS.map((p) => (
               <div
                 key={p.label}
-                className="bg-paper border border-line rounded-2xl p-5"
+                className="bg-paper border border-line rounded-2xl p-4 sm:p-5"
               >
-                <div className="font-display text-[1.8rem] leading-none text-clay">
+                <div className="font-display text-[1.5rem] sm:text-[1.8rem] leading-none text-clay">
                   {p.big}
                 </div>
                 <div className="mt-2 text-[0.85rem] text-ink-soft">{p.label}</div>
@@ -79,9 +79,9 @@ export default function HostPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <section className="py-14 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 mb-12">
             <h2 className="lg:col-span-7 font-display text-[1.8rem] md:text-[2.6rem] leading-tight">
               How it works
             </h2>
@@ -110,9 +110,9 @@ export default function HostPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-cream/40 border-y border-line">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="py-14 md:py-24 bg-cream/40 border-y border-line">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
             <div className="lg:col-span-5">
               <div className="text-[0.7rem] uppercase tracking-[0.28em] text-clay mb-3">
                 Start in 2 minutes
@@ -135,7 +135,7 @@ export default function HostPage() {
 
             <div className="lg:col-span-7">
               {sent ? (
-                <div className="bg-paper border border-forest rounded-3xl p-10 text-center">
+                <div className="bg-paper border border-forest rounded-3xl p-6 sm:p-10 text-center">
                   <div className="font-display text-[1.8rem] text-forest leading-tight mb-3">
                     Listing submitted.
                   </div>
@@ -164,7 +164,7 @@ export default function HostPage() {
                     e.preventDefault();
                     setSent(true);
                   }}
-                  className="bg-paper border border-line rounded-3xl p-7 md:p-9 space-y-5"
+                  className="bg-paper border border-line rounded-3xl p-5 sm:p-7 md:p-9 space-y-5"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <Field label="Your name" required>

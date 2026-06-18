@@ -18,7 +18,7 @@ export default function VerifyPage() {
     <div>
       {/* Hero */}
       <section className="bg-cream">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-16 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10 py-14 md:py-24">
           <div className="text-[0.7rem] uppercase tracking-[0.32em] text-forest mb-5 inline-flex items-center gap-2">
             <TickBadge size={16} />
             Trust on Abode
@@ -37,9 +37,9 @@ export default function VerifyPage() {
       </section>
 
       {/* Two-sided verification cards */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <section className="py-14 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 mb-10 md:mb-12">
             <h2 className="lg:col-span-7 font-display text-[1.8rem] md:text-[2.6rem] leading-tight">
               Two sides, one standard
             </h2>
@@ -50,7 +50,7 @@ export default function VerifyPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
             <VerifyCard
               side="Owners"
               accent="clay"
@@ -88,9 +88,9 @@ export default function VerifyPage() {
       </section>
 
       {/* Closing reassurance */}
-      <section className="py-16 md:py-24 bg-cream/40 border-y border-line">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="py-14 md:py-24 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-24 bg-cream/40 border-y border-line">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7">
               <div className="text-[0.7rem] uppercase tracking-[0.28em] text-forest mb-3">
                 Why it matters
@@ -121,7 +121,7 @@ export default function VerifyPage() {
               </div>
             </div>
             <div className="lg:col-span-5">
-              <div className="bg-paper border border-forest/30 rounded-3xl p-8 text-center">
+              <div className="bg-paper border border-forest/30 rounded-3xl p-6 sm:p-8 text-center">
                 <div className="mx-auto w-16 h-16 rounded-full bg-forest/10 grid place-items-center mb-4">
                   <TickBadge size={34} />
                 </div>
@@ -169,8 +169,8 @@ function VerifyCard({
     accent === "clay" ? "hover:bg-clay-deep" : "hover:bg-forest/85";
 
   return (
-    <div className="bg-paper border border-line rounded-3xl p-7 md:p-9 flex flex-col">
-      <div className="flex items-center justify-between gap-3">
+    <div className="bg-paper border border-line rounded-3xl p-5 sm:p-7 md:p-9 flex flex-col">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div
           className={`text-[0.7rem] uppercase tracking-[0.28em] ${accentText}`}
         >
@@ -211,8 +211,10 @@ function VerifyCard({
       {/* Action / status */}
       <div className="mt-7">
         {state === "verified" ? (
-          <div className="bg-forest/8 border border-forest/30 rounded-2xl p-5 flex items-start gap-3">
-            <TickBadge size={24} />
+          <div className="bg-forest/8 border border-forest/30 rounded-2xl p-4 sm:p-5 flex items-start gap-3">
+            <span className="shrink-0">
+              <TickBadge size={24} />
+            </span>
             <div>
               <div className="font-display text-[1.15rem] text-forest leading-tight">
                 Verified
@@ -223,8 +225,10 @@ function VerifyCard({
             </div>
           </div>
         ) : state === "pending" ? (
-          <div className="bg-saffron-soft/40 border border-saffron/50 rounded-2xl p-5 flex items-center gap-3">
-            <Spinner />
+          <div className="bg-saffron-soft/40 border border-saffron/50 rounded-2xl p-4 sm:p-5 flex items-center gap-3">
+            <span className="shrink-0">
+              <Spinner />
+            </span>
             <div>
               <div className="font-display text-[1.1rem] text-ink leading-tight">
                 Checking your documents
@@ -273,7 +277,7 @@ function Stepper({ state }: { state: VState }) {
                 {isVerified ? <CheckMark /> : i + 1}
               </div>
               <span
-                className={`text-[0.68rem] uppercase tracking-[0.12em] ${
+                className={`text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.06em] sm:tracking-[0.12em] whitespace-nowrap ${
                   reached ? "text-ink" : "text-ink-faint"
                 }`}
               >
@@ -282,7 +286,7 @@ function Stepper({ state }: { state: VState }) {
             </div>
             {i < STATES.length - 1 && (
               <div
-                className={`h-px flex-1 mx-2 mb-5 ${
+                className={`h-px flex-1 mx-1.5 sm:mx-2 mb-5 ${
                   i < current ? "bg-forest-soft" : "bg-line"
                 }`}
               />

@@ -9,8 +9,8 @@ export default function SignupPage() {
   const [role, setRole] = useState<Role>("tenant");
 
   return (
-    <div className="min-h-[calc(100vh-68px)] flex items-center justify-center px-5 py-12">
-      <div className="w-full max-w-md bg-paper border border-line rounded-2xl p-7 md:p-9">
+    <div className="min-h-[calc(100vh-68px)] flex items-center justify-center px-4 sm:px-5 py-10 sm:py-12 pb-24 md:pb-12">
+      <div className="w-full max-w-md bg-paper border border-line rounded-2xl p-6 sm:p-7 md:p-9">
         <h1 className="font-display text-[1.9rem] md:text-[2.2rem] leading-tight mb-2">
           Create account
         </h1>
@@ -22,7 +22,7 @@ export default function SignupPage() {
           <span className="block text-[0.72rem] uppercase tracking-[0.18em] text-ink-faint mb-2">
             I am a
           </span>
-          <div className="grid grid-cols-2 gap-2 bg-cream/50 border border-line-soft rounded-xl p-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-cream/50 border border-line-soft rounded-xl p-1">
             <RoleOption
               active={role === "tenant"}
               onClick={() => setRole("tenant")}
@@ -39,7 +39,7 @@ export default function SignupPage() {
         </div>
 
         <form className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="First name">
               <input className={fieldClass} placeholder="First name" />
             </Field>

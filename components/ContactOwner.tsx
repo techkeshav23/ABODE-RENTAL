@@ -34,35 +34,35 @@ export function ContactOwner({ property }: { property: Property }) {
   return (
     <div
       id="contact"
-      className="bg-paper border border-line rounded-2xl p-6 shadow-[0_8px_30px_-12px_rgba(26,20,13,0.18)]"
+      className="w-full max-w-full bg-paper border border-line rounded-2xl p-5 sm:p-6 shadow-[0_8px_30px_-12px_rgba(26,20,13,0.18)]"
     >
       {/* Rent summary */}
-      <div className="flex items-baseline justify-between mb-1">
-        <div>
-          <span className="font-display text-[1.8rem]">{formatINR(property.rent)}</span>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 mb-1">
+        <div className="min-w-0">
+          <span className="font-display text-[1.6rem] sm:text-[1.8rem]">{formatINR(property.rent)}</span>
           <span className="text-[0.92rem] text-ink-soft ml-1">/month</span>
         </div>
-        <div className="text-[0.82rem] text-ink-soft inline-flex items-center gap-1">
+        <div className="text-[0.82rem] text-ink-soft inline-flex items-center gap-1 shrink-0">
           <span className="text-clay">★</span>
           {property.rating.toFixed(1)}
           <span className="text-ink-faint">·</span>
           {property.reviews}
         </div>
       </div>
-      <div className="text-[0.82rem] text-ink-soft">
+      <div className="text-[0.82rem] text-ink-soft break-words">
         {formatINR(property.deposit)} deposit · {property.furnishing} · Available{" "}
         {property.availableFrom}
       </div>
 
       {/* Owner block — direct, no broker */}
       <div className="mt-5 pt-5 border-t border-line-soft flex items-center gap-3">
-        <div className="w-11 h-11 rounded-full bg-forest/10 text-forest grid place-items-center font-display text-[1.1rem]">
+        <div className="w-11 h-11 shrink-0 rounded-full bg-forest/10 text-forest grid place-items-center font-display text-[1.1rem]">
           {(owner?.name ?? "O").charAt(0)}
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="text-[0.92rem] font-medium text-ink truncate">{owner?.name}</div>
           {verifiedOwner ? (
-            <div className="inline-flex items-center gap-1 text-[0.76rem] text-forest">
+            <div className="inline-flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[0.76rem] text-forest">
               <VerifiedIcon /> Verified owner · {owner?.responseTime}
             </div>
           ) : (
@@ -80,7 +80,7 @@ export function ContactOwner({ property }: { property: Property }) {
             Request a visit
             <span aria-hidden>→</span>
           </button>
-          <div className="mt-2 flex items-center justify-center gap-1.5 text-[0.76rem] text-ink-faint">
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-center text-[0.76rem] text-ink-faint">
             <ClockIcon />
             {activeCount}/{MAX_ACTIVE_VISITS} open visits · 3-step verified booking
           </div>

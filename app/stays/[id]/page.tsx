@@ -46,9 +46,9 @@ export default async function PropertyPage({
   ];
 
   return (
-    <div>
+    <div className="pb-[76px] lg:pb-0">
       <section className="pt-6 pb-5">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
           <nav className="text-[0.82rem] text-ink-soft mb-3 flex items-center gap-1.5 flex-wrap">
             <Link href="/" className="hover:text-ink">
               Home
@@ -61,12 +61,12 @@ export default async function PropertyPage({
             <span className="text-ink">{property.city}</span>
           </nav>
 
-          <div className="flex items-end justify-between gap-6 flex-wrap">
-            <div className="max-w-3xl">
+          <div className="flex items-end justify-between gap-4 sm:gap-6 flex-wrap">
+            <div className="max-w-3xl min-w-0">
               <div className="text-[0.7rem] uppercase tracking-[0.24em] text-clay mb-2">
                 {property.bedrooms} BHK rental home
               </div>
-              <h1 className="font-display text-[1.9rem] md:text-[2.6rem] leading-tight tracking-tight">
+              <h1 className="font-display text-[1.6rem] sm:text-[1.9rem] md:text-[2.6rem] leading-tight tracking-tight">
                 {property.name}
               </h1>
               <p className="text-[0.98rem] text-ink-soft mt-2">{property.tagline}</p>
@@ -88,7 +88,7 @@ export default async function PropertyPage({
                 </span>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 shrink-0">
               <SaveButton slug={property.slug} variant="detail" />
               <button className="inline-flex items-center gap-2 px-4 py-2.5 border border-line rounded-full text-[0.85rem] hover:border-ink">
                 Share
@@ -99,24 +99,24 @@ export default async function PropertyPage({
       </section>
 
       <section className="pb-8">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
           <Gallery images={property.images} alt={property.name} />
         </div>
       </section>
 
       <section className="pb-16">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
             <div className="lg:col-span-7">
               {/* Owner — direct, verified, no broker */}
-              <div className="flex items-center justify-between pb-6 border-b border-line">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between gap-3 pb-6 border-b border-line">
+                <div className="flex items-center gap-3 min-w-0">
                   <Avatar name={owner?.name ?? "Owner"} size={56} />
-                  <div>
-                    <h2 className="font-display text-[1.4rem] leading-tight">
+                  <div className="min-w-0">
+                    <h2 className="font-display text-[1.25rem] sm:text-[1.4rem] leading-tight">
                       Listed directly by {owner?.name}
                     </h2>
-                    <div className="mt-1 flex items-center gap-2 text-[0.85rem]">
+                    <div className="mt-1 flex items-center flex-wrap gap-x-2 gap-y-0.5 text-[0.85rem]">
                       {verifiedOwner ? (
                         <span className="inline-flex items-center gap-1 text-forest">
                           <VerifiedIcon /> Verified owner
@@ -191,7 +191,7 @@ export default async function PropertyPage({
 
               <div className="py-7">
                 <h2 className="font-display text-[1.4rem] mb-3">Location</h2>
-                <div className="relative h-[320px] rounded-2xl overflow-hidden border border-line">
+                <div className="relative h-[240px] sm:h-[320px] rounded-2xl overflow-hidden border border-line">
                   <PropertyMap
                     name={property.name}
                     neighborhood={property.neighborhood}
@@ -224,7 +224,7 @@ export default async function PropertyPage({
       </section>
 
       <section className="py-12 bg-cream/40 border-y border-line">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
           <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
             <div>
               <div className="text-[0.7rem] uppercase tracking-[0.22em] text-ink-faint mb-2">
@@ -255,7 +255,7 @@ export default async function PropertyPage({
 
       {related.length > 0 && (
         <section className="py-14">
-          <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-5 lg:px-10">
             <h2 className="font-display text-[1.6rem] md:text-[2rem] leading-tight mb-7">
               More homes in {property.city}
             </h2>
@@ -268,19 +268,19 @@ export default async function PropertyPage({
         </section>
       )}
 
-      {/* Mobile sticky bar */}
-      <div className="lg:hidden sticky bottom-[68px] bg-paper border-t border-line p-4 z-30">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="font-display text-[1.2rem]">
+      {/* Mobile sticky action bar — sits above the 68px BottomNav, hidden on desktop */}
+      <div className="lg:hidden fixed inset-x-0 bottom-[68px] bg-paper border-t border-line px-4 py-3 z-30">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="font-display text-[1.2rem] truncate">
               {formatINR(property.rent)}
               <span className="text-[0.78rem] text-ink-soft ml-1">/mo</span>
             </div>
-            <div className="text-[0.78rem] text-ink-soft">
+            <div className="text-[0.78rem] text-ink-soft truncate">
               ★ {property.rating.toFixed(1)} · {property.reviews} reviews
             </div>
           </div>
-          <a href="#contact" className="px-6 py-3 bg-clay text-paper rounded-full text-[0.92rem]">
+          <a href="#contact" className="shrink-0 px-5 sm:px-6 py-3 bg-clay text-paper rounded-full text-[0.9rem] whitespace-nowrap">
             Request a visit
           </a>
         </div>

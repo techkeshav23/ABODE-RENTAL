@@ -81,12 +81,12 @@ export function NearbyExplorer() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
       {/* Left: controls + results */}
-      <div className="lg:col-span-5 xl:col-span-4">
+      <div className="order-2 lg:order-1 lg:col-span-5 xl:col-span-4">
         {/* Center selector */}
-        <div className="bg-paper border border-line rounded-2xl p-5">
-          <div className="flex items-center justify-between mb-3">
+        <div className="bg-paper border border-line rounded-2xl p-4 sm:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-3">
             <div className="text-[0.7rem] uppercase tracking-[0.24em] text-ink-faint">
               Search around
             </div>
@@ -189,8 +189,8 @@ export function NearbyExplorer() {
       </div>
 
       {/* Right: map */}
-      <div className="lg:col-span-7 xl:col-span-8">
-        <div className="relative h-[460px] lg:h-[calc(100vh-160px)] lg:sticky lg:top-[88px] rounded-2xl overflow-hidden border border-line">
+      <div className="order-1 lg:order-2 lg:col-span-7 xl:col-span-8">
+        <div className="relative h-[55vh] min-h-[320px] lg:h-[calc(100vh-160px)] lg:sticky lg:top-[88px] rounded-2xl overflow-hidden border border-line">
           <MapView
             center={center}
             radiusKm={radiusKm}

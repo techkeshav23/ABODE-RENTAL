@@ -84,7 +84,7 @@ export default async function StaysPage({
   return (
     <div className="bg-paper">
       <section className="pt-8 pb-6 border-b border-line">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+        <div className="mx-auto max-w-[1400px] px-4 lg:px-10">
           <div className="flex items-end justify-between flex-wrap gap-5 mb-6">
             <div>
               <div className="text-[0.7rem] uppercase tracking-[0.22em] text-clay mb-2">
@@ -106,16 +106,16 @@ export default async function StaysPage({
         </div>
       </section>
 
-      <section className="py-8">
-        <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <section className="py-8 pb-24 md:pb-8">
+        <div className="mx-auto max-w-[1400px] px-4 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             <aside className="lg:col-span-3">
               <Suspense>
                 <Filters />
               </Suspense>
             </aside>
 
-            <div className="lg:col-span-9">
+            <div className="lg:col-span-9 min-w-0">
               <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
                 <p className="text-[0.9rem] text-ink-soft">
                   Showing {results.length} of {PROPERTIES.length} homes
@@ -196,13 +196,13 @@ function SortLinks({ current, sp }: { current: string; sp: SearchParamsRaw }) {
   ];
 
   return (
-    <div className="flex items-center gap-1 text-[0.85rem]">
-      <span className="text-ink-faint mr-2">Sort:</span>
+    <div className="flex items-center gap-1 text-[0.85rem] max-w-full overflow-x-auto no-scrollbar -mx-1 px-1">
+      <span className="text-ink-faint mr-2 shrink-0">Sort:</span>
       {opts.map((o) => (
         <Link
           key={o.v}
           href={link(o.v)}
-          className={`px-2.5 py-1 rounded-full ${
+          className={`shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full ${
             current === o.v
               ? "bg-ink text-paper"
               : "text-ink-soft hover:text-ink"
