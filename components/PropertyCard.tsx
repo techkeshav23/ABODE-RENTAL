@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Property } from "@/lib/types";
-import { getOwner } from "@/lib/data";
+import { getOwner, getTier } from "@/lib/data";
+import { isPremium } from "@/lib/tiers";
 import { SaveButton } from "./SaveButton";
 import { CardGallery } from "./CardGallery";
 
@@ -17,6 +18,8 @@ export function PropertyCard({
   const aspect = size === "sm" ? "aspect-[4/3]" : "aspect-[5/4]";
   const owner = getOwner(property.ownerId);
   const verified = owner?.verified === "verified";
+  const tier = getTier(property);
+  const premium = isPremium(tier);
 
   return (
     <Link href={`/stays/${property.slug}`} className="group block">
@@ -24,8 +27,19 @@ export function PropertyCard({
         <CardGallery images={property.images} alt={property.name} />
         <SaveButton slug={property.slug} />
         <div className="absolute inset-x-0 top-0 p-3 flex items-start justify-between pointer-events-none">
-          <div className="px-2.5 py-1 bg-paper/95 backdrop-blur rounded-full text-[0.68rem] uppercase tracking-[0.16em] text-ink">
-            {property.bedrooms} BHK
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <div className="px-2.5 py-1 bg-paper/95 backdrop-blur rounded-full text-[0.66rem] uppercase tracking-[0.14em] text-ink">
+              {property.bedrooms} BHK
+            </div>
+            <div
+              className={`px-2.5 py-1 rounded-full text-[0.66rem] uppercase tracking-[0.14em] font-medium inline-flex items-center gap-1 ${
+                premium
+                  ? "bg-saffron text-ink"
+                  : "bg-paper/95 backdrop-blur text-ink-soft"
+              }`}
+            >
+              {premium ? `★ ${tier}` : tier}
+            </div>
           </div>
           <div className="stamp inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[0.78rem] mr-10 md:mr-12 shrink-0">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" className="shrink-0">

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { PROPERTIES } from "@/lib/data";
+import { PROPERTIES, getTier } from "@/lib/data";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Filters } from "@/components/Filters";
 import { SearchBar } from "@/components/SearchBar";
@@ -12,6 +12,7 @@ type SearchParamsRaw = {
   max?: string;
   beds?: string;
   furnishing?: string;
+  tier?: string;
   amenity?: string | string[];
   sort?: string;
 };
@@ -48,6 +49,7 @@ function filterAndSort(sp: SearchParamsRaw) {
   results = results.filter((p) => p.rent >= min && p.rent <= max);
   if (beds > 0) results = results.filter((p) => p.bedrooms === beds);
   if (furnishing) results = results.filter((p) => p.furnishing === furnishing);
+  if (sp.tier) results = results.filter((p) => getTier(p) === sp.tier);
   if (amenities.length) {
     results = results.filter((p) =>
       amenities.every((a) => p.amenities.some((pa) => pa.toLowerCase().includes(a)))
@@ -158,6 +160,7 @@ function ActiveChips({ sp }: { sp: SearchParamsRaw }) {
   if (sp.max) chips.push({ key: "max", label: `Max ₹${sp.max}` });
   if (sp.beds) chips.push({ key: "beds", label: `${sp.beds} BHK` });
   if (sp.furnishing) chips.push({ key: "furnishing", label: sp.furnishing });
+  if (sp.tier) chips.push({ key: "tier", label: `${sp.tier} tier` });
   const ams = ([] as string[]).concat(sp.amenity ?? []);
   ams.forEach((a) => chips.push({ key: `am-${a}`, label: a }));
 

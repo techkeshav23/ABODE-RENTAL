@@ -1,6 +1,9 @@
 // Abode is a broker-free rental-homes marketplace: verified owners list directly,
 // verified tenants contact them directly. No brokers, no middlemen.
 
+import type { Tier } from "./tiers";
+export type { Tier };
+
 export type VerificationStatus = "verified" | "pending" | "unverified";
 
 export type Furnishing = "Furnished" | "Semi-furnished" | "Unfurnished";
@@ -42,4 +45,5 @@ export type Property = {
   rules: string[];
   coordinates: { lat: number; lng: number };
   featured?: boolean;
+  tier?: Tier; // configured tier label (env-driven); owner/admin set, else derived
 };

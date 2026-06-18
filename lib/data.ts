@@ -1,4 +1,5 @@
-import type { Owner, Property } from "./types";
+import type { Owner, Property, Tier } from "./types";
+import { TIER_CLASSIC, TIER_PREMIUM } from "./tiers";
 
 const IMG = {
   modernHouse: "1564013799919-ab600027ffc6",
@@ -40,6 +41,12 @@ export const OWNERS: Owner[] = [
 const OWNER_MAP = new Map(OWNERS.map((o) => [o.id, o]));
 export function getOwner(id: string): Owner | undefined {
   return OWNER_MAP.get(id);
+}
+
+// Property tier (Classic / Premium). Uses an explicit p.tier if set (e.g. by the
+// owner/admin), otherwise derives a sensible default from furnishing + featured.
+export function getTier(p: Property): Tier {
+  return p.tier ?? (p.featured || p.furnishing === "Furnished" ? TIER_PREMIUM : TIER_CLASSIC);
 }
 
 export const PROPERTIES: Property[] = [

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { PROPERTIES } from "@/lib/data";
+import { PROPERTIES, getTier } from "@/lib/data";
+import { TIERS } from "@/lib/tiers";
 import type { Property, Furnishing } from "@/lib/types";
 
 const FURNISHINGS: Furnishing[] = ["Furnished", "Semi-furnished", "Unfurnished"];
@@ -44,6 +45,11 @@ export async function GET(request: Request) {
 
   if (furnishing) {
     results = results.filter((p) => p.furnishing === furnishing);
+  }
+
+  const tier = searchParams.get("tier");
+  if (tier && TIERS.includes(tier)) {
+    results = results.filter((p) => getTier(p) === tier);
   }
 
   if (amenities.length) {

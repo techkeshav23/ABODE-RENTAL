@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PROPERTIES, getOwner } from "@/lib/data";
+import { PROPERTIES, getOwner, getTier } from "@/lib/data";
+import { isPremium } from "@/lib/tiers";
 import { Gallery } from "@/components/Gallery";
 import { ContactOwner } from "@/components/ContactOwner";
 import { PropertyMap } from "@/components/PropertyMap";
@@ -26,6 +27,7 @@ export default async function PropertyPage({
 
   const owner = getOwner(property.ownerId);
   const verifiedOwner = owner?.verified === "verified";
+  const tier = getTier(property);
 
   const sameCity = PROPERTIES.filter(
     (p) => p.id !== property.id && p.city === property.city
@@ -63,8 +65,19 @@ export default async function PropertyPage({
 
           <div className="flex items-end justify-between gap-4 sm:gap-6 flex-wrap">
             <div className="max-w-3xl min-w-0">
-              <div className="text-[0.7rem] uppercase tracking-[0.24em] text-clay mb-2">
-                {property.bedrooms} BHK rental home
+              <div className="mb-2 flex items-center gap-2 flex-wrap">
+                <span className="text-[0.7rem] uppercase tracking-[0.24em] text-clay">
+                  {property.bedrooms} BHK rental home
+                </span>
+                <span
+                  className={`px-2 py-0.5 rounded-full text-[0.66rem] uppercase tracking-[0.14em] font-medium ${
+                    isPremium(tier)
+                      ? "bg-saffron text-ink"
+                      : "bg-cream text-ink-soft border border-line"
+                  }`}
+                >
+                  {isPremium(tier) ? `★ ${tier}` : tier}
+                </span>
               </div>
               <h1 className="font-display text-[1.6rem] sm:text-[1.9rem] md:text-[2.6rem] leading-tight tracking-tight">
                 {property.name}

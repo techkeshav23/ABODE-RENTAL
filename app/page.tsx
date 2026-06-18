@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { PROPERTIES, CITIES } from "@/lib/data";
+import { PROPERTIES, CITIES, getTier } from "@/lib/data";
+import { TIERS } from "@/lib/tiers";
 import { PropertyCard } from "@/components/PropertyCard";
 import { SearchBar } from "@/components/SearchBar";
 
@@ -21,6 +22,8 @@ const RENT_BUCKETS = [
   { v: "75000-", l: "Above ₹75k" },
 ];
 
+const TIER_OPTIONS = [{ v: "", l: "Any tier" }, ...TIERS.map((t) => ({ v: t, l: t }))];
+
 const QUICK_CHIPS = [
   { l: "On the map", q: "/nearby" },
   { l: "2 BHK", q: "/stays?beds=2" },
@@ -33,6 +36,7 @@ const QUICK_CHIPS = [
 export default function HomePage() {
   const [city, setCity] = useState("");
   const [rentRange, setRentRange] = useState("");
+  const [tier, setTier] = useState("");
   const [sort, setSort] = useState("relevance");
 
   const results = useMemo(() => {
@@ -44,6 +48,7 @@ export default function HomePage() {
         (p) => p.rent >= (min || 0) && p.rent <= (max || Number.MAX_SAFE_INTEGER)
       );
     }
+    if (tier) r = r.filter((p) => getTier(p) === tier);
     switch (sort) {
       case "rent-asc":
         r.sort((a, b) => a.rent - b.rent);
@@ -61,7 +66,7 @@ export default function HomePage() {
         );
     }
     return r;
-  }, [city, rentRange, sort]);
+  }, [city, rentRange, tier, sort]);
 
   return (
     <div>
@@ -118,6 +123,12 @@ export default function HomePage() {
             onChange={setRentRange}
             options={RENT_BUCKETS}
           />
+          <FilterDropdown
+            label="Tier"
+            value={tier}
+            onChange={setTier}
+            options={TIER_OPTIONS}
+          />
           <Link
             href="/nearby"
             className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-forest/10 border border-forest/25 text-forest text-[0.85rem] hover:bg-forest/15 transition-colors"
@@ -166,6 +177,7 @@ export default function HomePage() {
                 onClick={() => {
                   setCity("");
                   setRentRange("");
+                  setTier("");
                   setSort("relevance");
                 }}
                 className="text-clay underline"

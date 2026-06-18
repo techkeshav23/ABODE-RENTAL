@@ -77,7 +77,7 @@ export function ContactOwner({ property }: { property: Property }) {
             onClick={() => setOpen(true)}
             className="w-full bg-clay hover:bg-clay-deep text-paper rounded-xl py-3.5 text-[0.98rem] font-medium transition-colors inline-flex items-center justify-center gap-2"
           >
-            Request a visit
+            Contact the owner
             <span aria-hidden>→</span>
           </button>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-center text-[0.76rem] text-ink-faint">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { TIERS } from "@/lib/tiers";
 
 const AMENITIES = [
   "Wi-Fi",
@@ -30,6 +31,7 @@ export function Filters() {
   const [max, setMax] = useState(params.get("max") ?? "");
   const [beds, setBeds] = useState(params.get("beds") ?? "");
   const [furnishing, setFurnishing] = useState(params.get("furnishing") ?? "");
+  const [tier, setTier] = useState(params.get("tier") ?? "");
   const [amenities, setAmenities] = useState<string[]>(params.getAll("amenity"));
 
   useEffect(() => {
@@ -38,6 +40,7 @@ export function Filters() {
     setMax(params.get("max") ?? "");
     setBeds(params.get("beds") ?? "");
     setFurnishing(params.get("furnishing") ?? "");
+    setTier(params.get("tier") ?? "");
     setAmenities(params.getAll("amenity"));
   }, [params]);
 
@@ -48,6 +51,7 @@ export function Filters() {
     if (max) sp.set("max", max);
     if (beds) sp.set("beds", beds);
     if (furnishing) sp.set("furnishing", furnishing);
+    if (tier) sp.set("tier", tier);
     amenities.forEach((a) => sp.append("amenity", a));
     const sort = params.get("sort");
     if (sort) sp.set("sort", sort);
@@ -60,6 +64,7 @@ export function Filters() {
     setMax("");
     setBeds("");
     setFurnishing("");
+    setTier("");
     setAmenities([]);
     router.push("/stays");
   };
@@ -102,6 +107,15 @@ export function Filters() {
               onClick={() => setBeds(b)}
               label={`${b} BHK`}
             />
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Property tier">
+        <div className="flex flex-wrap gap-1.5">
+          <Chip active={tier === ""} onClick={() => setTier("")} label="Any" />
+          {TIERS.map((t) => (
+            <Chip key={t} active={tier === t} onClick={() => setTier(t)} label={t} />
           ))}
         </div>
       </Section>

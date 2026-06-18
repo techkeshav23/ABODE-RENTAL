@@ -54,8 +54,8 @@ export function Footer() {
             links={[
               { href: "#", label: "Help centre" },
               { href: "#", label: "Safety information" },
-              { href: "#", label: "Cancellation options" },
               { href: "#", label: "Report a concern" },
+              { href: "/admin", label: "Admin console" },
             ]}
           />
         </div>

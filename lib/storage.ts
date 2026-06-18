@@ -21,6 +21,8 @@ export type VisitRequest = {
   aadhaarLast4?: string;
   idDocName?: string;
   verified?: boolean;
+  paid?: boolean;
+  tokenAmount?: number;
   status: "requested" | "confirmed" | "cancelled";
   createdAt: string;
 };
@@ -56,10 +58,12 @@ export function findRequest(id: string): VisitRequest | undefined {
 }
 
 export function cancelRequest(id: string) {
+  setRequestStatus(id, "cancelled");
+}
+
+export function setRequestStatus(id: string, status: VisitRequest["status"]) {
   if (!isClient()) return;
-  const list = getRequests().map((r) =>
-    r.id === id ? { ...r, status: "cancelled" as const } : r
-  );
+  const list = getRequests().map((r) => (r.id === id ? { ...r, status } : r));
   localStorage.setItem(RQ, JSON.stringify(list));
   window.dispatchEvent(new Event(RQ_EVENT));
 }

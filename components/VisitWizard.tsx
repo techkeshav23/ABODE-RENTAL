@@ -6,9 +6,11 @@ import Link from "next/link";
 import type { Property } from "@/lib/types";
 import { getOwner } from "@/lib/data";
 import { canRequestVisit, newRequestId, saveRequest } from "@/lib/storage";
+import { PaymentSheet } from "./PaymentSheet";
 
 const SLOTS = ["Morning · 9–12", "Afternoon · 12–4", "Evening · 4–8"];
 const STEPS = ["Schedule", "Verify identity", "Confirm"];
+const TOKEN = 199; // refundable booking token (demo)
 
 const formatAadhaar = (digits: string) =>
   digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
@@ -55,6 +57,7 @@ export function VisitWizard({
   const [consent, setConsent] = useState(false);
 
   const [error, setError] = useState("");
+  const [showPay, setShowPay] = useState(false);
 
   const phoneOk = /^\d{10}$/.test(phone);
   const aadhaarOk = aadhaar.length === 12;
@@ -62,12 +65,16 @@ export function VisitWizard({
   const step1Ok = visitDate && visitSlot;
   const step2Ok = name && phoneVerified && aadhaarOk && idDocName && consent;
 
-  const submit = () => {
+  const startPayment = () => {
     const gate = canRequestVisit(property.slug);
     if (!gate.ok) {
       setError(gate.reason ?? "Visit limit reached.");
       return;
     }
+    setShowPay(true);
+  };
+
+  const finalize = () => {
     saveRequest({
       id: newRequestId(),
       propertyId: property.id,
@@ -87,9 +94,12 @@ export function VisitWizard({
       aadhaarLast4: aadhaar.slice(-4),
       idDocName,
       verified: true,
+      paid: true,
+      tokenAmount: TOKEN,
       status: "requested",
       createdAt: new Date().toISOString(),
     });
+    setShowPay(false);
     setStep(4);
   };
 
@@ -108,7 +118,7 @@ export function VisitWizard({
         <div className="shrink-0 bg-paper border-b border-line px-4 sm:px-6 py-3 flex items-start justify-between gap-3">
           <div>
             <div className="text-[0.66rem] uppercase tracking-[0.2em] text-clay">
-              Request a visit
+              Contact the owner
             </div>
             <h2 className="font-display text-[1.05rem] leading-tight">{property.name}</h2>
             <p className="text-[0.8rem] text-ink-soft">
@@ -315,8 +325,9 @@ export function VisitWizard({
               </div>
               <div className="flex items-center gap-2 text-[0.82rem] text-forest bg-forest/5 border border-forest/20 rounded-lg p-3">
                 <ShieldIcon />
-                You'll be marked a <strong>Verified tenant</strong>. This request goes
-                directly to {owner?.name} — no broker, no brokerage.
+                You'll be marked a <strong>Verified tenant</strong> and pay a{" "}
+                <strong>₹{TOKEN} refundable token</strong> to lock the slot — directly with{" "}
+                {owner?.name}, no broker, no brokerage.
               </div>
               {error && (
                 <p className="text-[0.82rem] text-clay bg-clay/5 border border-clay/20 rounded-lg p-3">
@@ -374,15 +385,18 @@ export function VisitWizard({
               </button>
             ) : (
               <button
-                onClick={submit}
-                className="px-6 py-2.5 bg-forest hover:opacity-90 text-paper rounded-full text-[0.9rem] font-medium inline-flex items-center gap-2"
+                onClick={startPayment}
+                className="px-5 py-2.5 bg-forest hover:opacity-90 text-paper rounded-full text-[0.88rem] font-medium inline-flex items-center gap-2"
               >
-                <TickIcon /> Confirm &amp; send request
+                <TickIcon /> Pay ₹{TOKEN} &amp; confirm
               </button>
             )}
           </div>
         )}
       </div>
+      {showPay && (
+        <PaymentSheet amount={TOKEN} onClose={() => setShowPay(false)} onSuccess={finalize} />
+      )}
     </div>,
     document.body
   );
