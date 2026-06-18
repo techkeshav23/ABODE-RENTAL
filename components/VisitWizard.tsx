@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import type { Property } from "@/lib/types";
 import { getOwner } from "@/lib/data";
@@ -23,6 +24,17 @@ export function VisitWizard({
   const today = new Date().toISOString().slice(0, 10);
 
   const [step, setStep] = useState(1); // 1..3, 4 = success
+
+  // Render via a portal at <body> so the modal escapes the <main z-10> stacking
+  // context — otherwise the z-40 Header/BottomNav (siblings of <main>) paint over it.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    document.body.style.overflow = "hidden"; // lock background scroll while open
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   // step 1
   const [visitDate, setVisitDate] = useState("");
@@ -81,7 +93,9 @@ export function VisitWizard({
     setStep(4);
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       className="fixed inset-0 z-[60] bg-ink/60 backdrop-blur-sm flex items-end md:items-center justify-center md:p-5"
       onClick={onClose}
@@ -369,7 +383,8 @@ export function VisitWizard({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
